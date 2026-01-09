@@ -1,0 +1,139 @@
+import { Dialog, Transition } from '@headlessui/react';
+import { Fragment, useEffect, useRef, useState } from 'react';
+import Btn from './Button';
+import { format, getISOWeek, nextSunday, parseISO, addDays, eachDayOfInterval } from 'date-fns';
+import DesktopHistoryView from './DesktopHistoryView';
+import { Paper, Badge } from '@mantine/core';
+
+export default function ScheduleHistoryModal({ shift, shiftsAmount, currentIndex }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openScheduleHistoryModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeScheduleHistoryModal = async () => {
+    setIsOpen(false);
+  };
+
+  const datesArr = useRef(null);
+
+  useEffect(() => {
+    const start = nextSunday(parseISO(shift.date));
+    const end = addDays(start, 5);
+    datesArr.current = eachDayOfInterval({ start, end });
+  }, [shift]);
+
+  const handleStatusText = () => {
+    const currentWeekNumber = getISOWeek(new Date());
+    const shiftWeekNumber = getISOWeek(nextSunday(parseISO(shift.date)));
+
+    switch (true) {
+      case currentWeekNumber < shiftWeekNumber && currentIndex === 0:
+        return <Badge color="grape">Publishing Soon</Badge>;
+      case currentWeekNumber === shiftWeekNumber && currentIndex === 0:
+        return <Badge color="green">Published Now</Badge>;
+      case currentWeekNumber === shiftWeekNumber:
+        return <Badge color="orange">Current Week</Badge>;
+      case currentWeekNumber > shiftWeekNumber:
+        return <Badge color="dark">Published in the Past</Badge>;
+      case currentWeekNumber < shiftWeekNumber:
+        return <Badge color="grape">Publishing Soon</Badge>;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <>
+      <p className="underline cursor-pointer" onClick={openScheduleHistoryModal}>
+        {shift.name}
+      </p>
+
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          className="fixed inset-0 z-10 overflow-y-auto bg-black bg-opacity-40"
+          onClose={closeScheduleHistoryModal}
+        >
+          <div className="min-h-screen px-4 text-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Dialog.Overlay className="fixed inset-0" />
+            </Transition.Child>
+
+            <span className="inline-block h-screen align-middle" aria-hidden="true">
+              &#8203;
+            </span>
+
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <div
+                dir="ltr"
+                className="inline-block w-11/12 p-4 m-2 overflow-auto text-left align-middle transition-all transform bg-white rounded-lg shadow-xl md:w-11/12 lg:w-9/12"
+              >
+                <Dialog.Title as="h1" className="text-2xl font-bold leading-6 text-gray-900">
+                  Work Schedule
+                </Dialog.Title>
+
+                <div className="mt-2">
+                  <div className="my-5 modal__section">
+                    <p className="text-xl font-medium">{shift.name}</p>
+
+                    <Paper className="w-4/6 m-5" shadow="sm" p="sm" withBorder>
+                      <div className="flex">
+                        <p className="mr-2 font-medium">Published by:</p>
+                        <p>{shift.savedBy}</p>
+                      </div>
+
+                      <div className="flex">
+                        <p className="mr-2 font-medium">Publish date:</p>
+                        <p>{format(parseISO(shift.date), 'dd-MM-yyyy')}</p>
+                      </div>
+
+                      <div className="flex">
+                        <p className="mr-2 font-medium">Publish time:</p>
+                        <p>{format(parseISO(shift.date), 'HH:mm')}</p>
+                      </div>
+
+                      <div className="flex">
+                        <p className="mr-2 font-medium">Status:</p>
+                        <div>{handleStatusText()}</div>
+                      </div>
+                    </Paper>
+                  </div>
+
+                  <div className="w-full">
+                    {shift && (
+                      <div className="flex xl:justify-center">
+                        <DesktopHistoryView table={shift.data} datesArr={datesArr.current} />
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="mt-4">
+                  <Btn name="Close" color="blue" onClick={closeScheduleHistoryModal} />
+                </div>
+              </div>
+            </Transition.Child>
+          </div>
+        </Dialog>
+      </Transition>
+    </>
+  );
+}
