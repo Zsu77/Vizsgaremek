@@ -67,7 +67,7 @@ const WeekSchedule = () => {
         if (employee.username === user.username) {
           console.log(`${index + 1}/${day.length}`);
           if (index + 1 === (day.length - 4 || day.length - 2)) {
-            console.log('אמצע');
+            console.log('middle');
           }
         }
         return employee.username === user.username;
@@ -84,13 +84,13 @@ const WeekSchedule = () => {
         <div className="grid mt-5 place-items-center" dir="rtl">
           <div className="w-11/12 md:w-5/6 lg:w-5/6">
             <div className="flex justify-between">
-              <h1 className="text-3xl font-semibold">סידור עבודה נוכחי</h1>
+              <h1 className="text-3xl font-semibold">Current Schedule</h1>
               {!user.admin && table && (
                 <button
                   onClick={(e) => showOnlyMySchedule(e)}
                   className="px-2 py-1 text-base font-semibold text-white bg-gray-600 rounded-full focus:outline-none focus:ring focus:ring-blue-300 hover:bg-sky-700"
                 >
-                  רק אני
+                  Only me
                 </button>
               )}
             </div>
@@ -105,37 +105,37 @@ const WeekSchedule = () => {
                       <div className="table-header-group text-xl">
                         <div className="table-row font-bold">
                           <div className="table-cell p-2 border-b wrap">
-                            ראשון
+                            Sunday
                             <span className="block text-sm font-normal break-words">
                               {datesArr && formatDay(datesArr[0])}
                             </span>
                           </div>
                           <div className="table-cell p-2 border-b">
-                            שני{' '}
+                            Monday{' '}
                             <span className="block text-sm font-normal">
                               {datesArr && formatDay(datesArr[1])}
                             </span>
                           </div>
                           <div className="table-cell p-2 border-b">
-                            שלישי
+                            Tuesday
                             <span className="block text-sm font-normal">
                               {datesArr && formatDay(datesArr[2])}
                             </span>
                           </div>
                           <div className="table-cell p-2 border-b">
-                            רביעי
+                            Wednesday
                             <span className="block text-sm font-normal">
                               {datesArr && formatDay(datesArr[3])}
                             </span>
                           </div>
                           <div className="table-cell p-2 border-b">
-                            חמישי
+                            Thursday
                             <span className="block text-sm font-normal">
                               {datesArr && formatDay(datesArr[4])}
                             </span>
                           </div>
                           <div className="table-cell p-2 border-b">
-                            שישי
+                            Friday
                             <span className="block text-sm font-normal">
                               {datesArr && formatDay(datesArr[5])}
                             </span>
@@ -156,7 +156,7 @@ const WeekSchedule = () => {
                 </div>
               ) : (
                 <h1 className="text-3xl font-medium text-center my-28 text-slate-800">
-                  לא פורסם סידור
+                  No schedule published
                 </h1>
               )}
             </div>
