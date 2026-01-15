@@ -1,7 +1,7 @@
 import Modal from './RequestInfoModal';
 import { parse } from 'date-fns';
 
-const RequestListTableRow = ({ comment, date, status, onClick, dateID }) => {
+const RequestListTableRow = ({ comment, date, status, onClick, dateID, approvedBy }) => {
   const requestDate = parse(date, 'dd-MM-yyyy', new Date());
   const currentDate = new Date();
 
@@ -47,7 +47,7 @@ const RequestListTableRow = ({ comment, date, status, onClick, dateID }) => {
               </div>
             )}
 
-            {currentDate <= requestDate && !status && (
+            {currentDate <= requestDate && !status && approvedBy == "" && (
               <div
                 onClick={onClick}
                 className="flex items-center justify-center px-2 py-3 mt-2 bg-yellow-200 rounded-full"

@@ -43,6 +43,7 @@ export default function RequestsList() {
         />
       );
     } else {
+      console.log(date.username + ' ' + date.date + ' ' + date.approvedBy);
       return (
         <RequestsListTableRow
           key={date._id}
@@ -50,6 +51,7 @@ export default function RequestsList() {
           comment={date.comment}
           date={date.date}
           status={date.approved}
+          approvedBy={date.approvedBy}
         />
       );
     }

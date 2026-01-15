@@ -52,11 +52,11 @@ const WeekSchedule = () => {
   }
 
   const formatDay = (date) => {
-    return format(date, 'd LLLL', { locale: he });
+    return format(date, 'd LLLL');
   };
 
   const getDayHebrew = (date) => {
-    return format(date, 'EEEE', { locale: he });
+    return format(date, 'EEEE');
   };
 
   const showOnlyMySchedule = (e) => {
@@ -81,7 +81,7 @@ const WeekSchedule = () => {
     <>
       <Navbar />
       <div>
-        <div className="grid mt-5 place-items-center" dir="rtl">
+        <div className="grid mt-5 place-items-center">
           <div className="w-11/12 md:w-5/6 lg:w-5/6">
             <div className="flex justify-between">
               <h1 className="text-3xl font-semibold">Current Schedule</h1>
@@ -100,7 +100,7 @@ const WeekSchedule = () => {
             <div>
               {table && table.length > 0 ? (
                 <div className="flex lg:grid lg:place-items-center md:grid md:place-items-center ">
-                  <div className="hidden w-full mt-10 md:table md:w-11/12 lg:w-9/12" dir="rtl">
+                  <div className="hidden w-full mt-10 md:table md:w-11/12 lg:w-9/12">
                     {table ? (
                       <div className="table-header-group text-xl">
                         <div className="table-row font-bold">

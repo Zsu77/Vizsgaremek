@@ -6,7 +6,8 @@ WORKDIR /usr/src/app/frontend/
 COPY frontend/package*.json ./
 RUN npm install --force
 COPY frontend/ ./
-RUN npm run dev
+RUN npm run build
+# RUN npm run dev
 
 # Nginx
 FROM nginx:1.21.6-alpine
