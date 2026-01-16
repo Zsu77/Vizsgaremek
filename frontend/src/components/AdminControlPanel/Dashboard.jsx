@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from '../Navbar';
 import HashLoader from 'react-spinners/HashLoader';
 import { useUserContext } from '../useUserContext';
 import { UsersContextProvider } from './useUsersContext';

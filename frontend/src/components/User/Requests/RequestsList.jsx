@@ -42,7 +42,6 @@ export default function RequestsList() {
                         date={date.date}
                         status={date.approved}
                         dateID={date._id}
-                        approvedBy={date.approvedBy}
                       />
                     ))}
                 </tbody>

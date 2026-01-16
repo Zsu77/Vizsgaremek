@@ -4,9 +4,9 @@
 FROM node:16 AS frontend
 WORKDIR /usr/src/app/frontend/
 COPY frontend/package*.json ./
-RUN npm install --force
+RUN npm install
 COPY frontend/ ./
-RUN npm run dev
+RUN npm run build
 
 # Nginx
 FROM nginx:1.21.6-alpine

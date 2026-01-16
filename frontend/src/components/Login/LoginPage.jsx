@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Msg from '../general/Msg';
 import axios from 'axios';
 import { useUserContext } from '../useUserContext';
-import logo from './../../logos/logo__full-white.svg';
 
 const LoginPage = () => {
   let navigate = useNavigate();
@@ -32,7 +31,7 @@ const LoginPage = () => {
       console.error(error.message);
       setError({
         bolded: 'Error',
-        msg: `wrong username or password`,
+        msg: 'wrong username or password',
       });
     }
   };
@@ -42,11 +41,11 @@ const LoginPage = () => {
       <section className="flex items-center justify-center min-h-screen m-2 background">
         <div className="w-full max-w-md py-12 m-2 bg-gray-900 rounded px-7 drop-shadow-2xl">
           <form onSubmit={handleLogin} className="space-y-4">
-            <div className="mb-4" >
-              <img src={logo} alt="shift scheduler's logo" />
-              <h2 className="text-xl font-bold text-center text-white">Wellcome</h2>
+            <div className="mb-4">
+              <h2 className="text-xl font-bold text-center text-white">Welcome</h2>
             </div>
-            <div >
+
+            <div>
               <input
                 className="w-full p-4 text-sm text-gray-600 border border-gray-200 rounded bg-gray-50 focus:outline-none"
                 type="text"
@@ -57,7 +56,8 @@ const LoginPage = () => {
                 required
               />
             </div>
-            <div >
+
+            <div>
               <input
                 className="w-full p-4 text-sm text-gray-600 border border-gray-200 rounded bg-gray-50 focus:outline-none"
                 type="password"
@@ -68,6 +68,7 @@ const LoginPage = () => {
                 required
               />
             </div>
+
             <div>
               <button
                 className="w-full py-4 text-sm font-bold transition duration-200 bg-blue-600 rounded hover:bg-blue-700 text-gray-50"
@@ -76,6 +77,7 @@ const LoginPage = () => {
                 Sign in
               </button>
             </div>
+
             {error && <Msg bolded={error.bolded} msg={error.msg} status={false} />}
           </form>
         </div>
