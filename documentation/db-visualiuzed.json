@@ -1,0 +1,188 @@
+{
+  "collections": {
+    "shift-scheduler.sessions": {
+      "ns": "shift-scheduler.sessions",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "expires",
+          "session"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "string"
+          },
+          "expires": {
+            "bsonType": "date"
+          },
+          "session": {
+            "bsonType": "string"
+          }
+        }
+      }
+    },
+    "shift-scheduler.shifts": {
+      "ns": "shift-scheduler.shifts",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "__v",
+          "data",
+          "date",
+          "name",
+          "savedBy"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "__v": {
+            "bsonType": "int"
+          },
+          "data": {
+            "bsonType": "array",
+            "items": {
+              "bsonType": "array",
+              "items": {
+                "bsonType": "object",
+                "properties": {
+                  "_id": {
+                    "bsonType": "string"
+                  },
+                  "__v": {
+                    "bsonType": "int"
+                  },
+                  "admin": {
+                    "bsonType": "bool"
+                  },
+                  "blockedDates": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "object",
+                      "properties": {
+                        "_id": {
+                          "bsonType": "string"
+                        },
+                        "approved": {
+                          "bsonType": "bool"
+                        },
+                        "approvedBy": {
+                          "bsonType": "string"
+                        },
+                        "comment": {
+                          "bsonType": "string"
+                        },
+                        "date": {
+                          "bsonType": "string"
+                        }
+                      },
+                      "required": [
+                        "_id",
+                        "approved",
+                        "approvedBy",
+                        "comment",
+                        "date"
+                      ]
+                    }
+                  },
+                  "hash": {
+                    "bsonType": "string"
+                  },
+                  "id": {
+                    "bsonType": "string"
+                  },
+                  "salt": {
+                    "bsonType": "string"
+                  },
+                  "username": {
+                    "bsonType": "string"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          },
+          "date": {
+            "bsonType": "date"
+          },
+          "name": {
+            "bsonType": "string"
+          },
+          "savedBy": {
+            "bsonType": "string"
+          }
+        }
+      }
+    },
+    "shift-scheduler.users": {
+      "ns": "shift-scheduler.users",
+      "jsonSchema": {
+        "bsonType": "object",
+        "required": [
+          "_id",
+          "__v",
+          "admin",
+          "blockedDates",
+          "hash",
+          "salt",
+          "username"
+        ],
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "__v": {
+            "bsonType": "int"
+          },
+          "admin": {
+            "bsonType": "bool"
+          },
+          "blockedDates": {
+            "bsonType": "array",
+            "items": {
+              "bsonType": "object",
+              "properties": {
+                "_id": {
+                  "bsonType": "objectId"
+                },
+                "approved": {
+                  "bsonType": "bool"
+                },
+                "approvedBy": {
+                  "bsonType": "string"
+                },
+                "comment": {
+                  "bsonType": "string"
+                },
+                "date": {
+                  "bsonType": "string"
+                }
+              },
+              "required": [
+                "_id",
+                "approved",
+                "approvedBy",
+                "comment",
+                "date"
+              ]
+            }
+          },
+          "hash": {
+            "bsonType": "string"
+          },
+          "salt": {
+            "bsonType": "string"
+          },
+          "username": {
+            "bsonType": "string"
+          }
+        }
+      }
+    }
+  },
+  "relationships": []
+}
