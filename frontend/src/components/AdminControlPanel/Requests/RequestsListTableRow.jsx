@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { parse } from 'date-fns';
 
-const RequestListTableRow = ({ name, comment, date, status, onClick, approvedBy }) => {
+const RequestListTableRow = ({ name, comment, date, status, onClick }) => {
   const requestDate = parse(date, 'dd-MM-yyyy', new Date());
   const currentDate = new Date();
 
@@ -36,14 +36,7 @@ const RequestListTableRow = ({ name, comment, date, status, onClick, approvedBy 
                 <p className="text-base leading-3 text-green-700">Approved</p>
               </div>
             )}
-            {currentDate <= requestDate && !status &&  approvedBy != "" && (
-              <div
-                onClick={onClick}
-                className="flex items-center justify-center px-2 py-3 mt-2 bg-red-200 rounded-full"
-              >
-                <p className="text-base leading-3 text-red-700">Not approved</p>
-              </div>
-            )}{currentDate > requestDate && status && (
+            {currentDate > requestDate && !status && (
               <div
                 onClick={onClick}
                 className="flex items-center justify-center px-2 py-3 mt-2 bg-red-200 rounded-full"
@@ -51,7 +44,7 @@ const RequestListTableRow = ({ name, comment, date, status, onClick, approvedBy 
                 <p className="text-base leading-3 text-red-700">Not approved</p>
               </div>
             )}
-            {currentDate <= requestDate && !status &&  approvedBy == "" && (
+            {currentDate <= requestDate && !status && (
               <div
                 onClick={onClick}
                 className="flex items-center justify-center px-2 py-3 mt-2 bg-yellow-200 rounded-full hover:cursor-pointer"

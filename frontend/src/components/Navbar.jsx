@@ -4,8 +4,6 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, StatusOnlineIcon, XIcon } from '@heroicons/react/outline';
 import axios from 'axios';
 import { useUserContext } from './useUserContext';
-import logoLg from './../logos/logo__full-white.svg';
-import logoSm from './../logos/logo__small.svg';
 
 let navigation = [
   { name: 'Schedule', href: '/', current: false },
@@ -50,10 +48,7 @@ const Navbar = () => {
               </div>
 
               <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
-                <div className="flex items-center flex-shrink-0">
-                  <img className="block w-auto h-10 lg:hidden" src={logoSm} alt="logo" />
-                  <img className="hidden w-auto h-10 lg:block" src={logoLg} alt="logo" />
-                </div>
+                {/* LOGÓK TÖRÖLVE */}
 
                 <div className="hidden sm:block sm:m-3">
                   <div className="flex space-x-4">
