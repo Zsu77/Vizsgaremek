@@ -7,7 +7,7 @@
 #`docker compose up`
 
 #kezdő adatbázis:
-#mongodb atlas-ban a 27018-as portra kell csatlakozni, ott beilleszteni ezt a `users` collection-be:
+#mongodb compass-ban a 27018-as portra kell csatlakozni, ott beilleszteni ezt a `users` collection-be:
 ```
 {
   "_id": { "$oid": "6276688e8ac0526064fb3ade" },
